@@ -42,4 +42,4 @@ def decodedMsg():
     return decode(request.args.get('msg'))
 
 
-app.run(host='0.0.0.0', port=5000)
+app.run()
