@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,redirect
 from dotenv import load_dotenv
 import os
 
@@ -31,15 +31,21 @@ def decode(msg):
 
 @app.route('/')
 def index():
-    return '<h1>Welcome to <b>DeEecrypter</b></h1><hr><h2>To Encode Text Use URL: 127.0.0.1:5000/encode?msg=msg_to_be_encoded</h2><hr><h2>To Decode Text Use URL: 127.0.0.1:5000/decode?msg=encoded_msg</h2><hr>'
+    # return '<h1>Welcome to <b>DeEncrypter</b></h1><hr><h2>To Encode Text Use URL: <a href="https://deencrypter.onrender.com/encode?msg=Hello Word">https://deencrypter.onrender.com/encode?msg=Hello Word</a></h2><hr><h2>To Decode Text Use URL:<a href="https://deencrypter.onrender.com/decode?msg=Jgnnq&quot;Yqtf">https://deencrypter.onrender.com/decode?msg=Jgnnq"Yqtf</a></h2><hr>'
+    return ''
 
 @app.route('/encode')
 def encodedMsg():
+    if request.args.get('msg')==None:
+        return redirect('/')
     return encode(request.args.get('msg'))
 
 @app.route('/decode')
 def decodedMsg():
+    if request.args.get('msg')==None:
+        return redirect('/')
     return decode(request.args.get('msg'))
+
 
 
 app.run()
