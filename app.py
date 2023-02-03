@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 
-# 49      --> ((((49- 3)+22+46865)-33554)+586857) --> 
-# 600236  --> ((((600236+3)-22-46865)+33554)-586857)
+
+load_dotenv()
 KEY_X=os.getenv('KEY_X')
 KEY_Y=os.getenv('KEY_Y')
 KEY_Z=os.getenv('KEY_Z')
@@ -18,21 +18,19 @@ def equatedecoding(num):
     return ((((num+KEY_X)-KEY_Y-KEY_Z)+KEY_A)-KEY_B)
 
 def encode(msg):
-    # count=587356
     for i in range(len(msg)):
         msg = msg[:i] + chr(ord(msg[i])+2) + msg[i+1:]
     return msg
 
 def decode(msg):
     for i in range(len(msg)):
-        # msg[i]=ord(msg[i])<<2
         msg = msg[:i] + chr(ord(msg[i])-2) + msg[i+1:]
     return msg
 
+@app.route('/', defaults={'path': ''})
 @app.route('/')
 def index():
-    # return '<h1>Welcome to <b>DeEncrypter</b></h1><hr><h2>To Encode Text Use URL: <a href="https://deencrypter.onrender.com/encode?msg=Hello Word">https://deencrypter.onrender.com/encode?msg=Hello Word</a></h2><hr><h2>To Decode Text Use URL:<a href="https://deencrypter.onrender.com/decode?msg=Jgnnq&quot;Yqtf">https://deencrypter.onrender.com/decode?msg=Jgnnq"Yqtf</a></h2><hr>'
-    return ''
+    return '<h1>Welcome to <b>DeEncrypter</b></h1><hr><h2>To Encode Text Use URL: <a href="https://deencrypter.onrender.com/encode?msg=Hello Word">https://deencrypter.onrender.com/encode?msg=Hello Word</a></h2><hr><h2>To Decode Text Use URL:<a href="https://deencrypter.onrender.com/decode?msg=Jgnnq&quot;Yqtf">https://deencrypter.onrender.com/decode?msg=Jgnnq"Yqtf</a></h2><hr>'
 
 @app.route('/encode')
 def encodedMsg():
