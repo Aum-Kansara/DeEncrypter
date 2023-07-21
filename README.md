@@ -2,4 +2,9 @@
 A Simple Text Encryption / Decryption API Using Flask
 
 ## To use API
-* ### Request : send GET request to following link [https://deencrypter.onrender.com] with argument as 
+* Enctyption :
+  * ### Request : Send GET request to following link https://deencrypter.onrender.com on route '/encode' For Encryption with argument as msg='your_message'
+  * ### Response : Receive response as enctypted key of message
+* Dectyption :
+  * ### Request : Send GET request to following link https://deencrypter.onrender.com on route '/encode' For Encryption with argument as msg='your_message'
+  * ### Response : Receive response as enctypted key of message
